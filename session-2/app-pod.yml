@@ -1,0 +1,17 @@
+# apiVersion = (Camel Case) 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+  labels:
+    env: development
+    tier: frontend
+    app: web
+    release: canary
+spec:
+  containers:
+  - image: nginx
+    name: app-container
+    ports:
+    - protocol: TCP
+      containerPort: 80

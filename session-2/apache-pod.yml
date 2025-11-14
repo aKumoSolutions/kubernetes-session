@@ -1,0 +1,18 @@
+# apiVersion = (Camel Case) 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apache-pod
+  labels: 
+# key must be unique, value can repeated. Labels can be applied at any time. 
+    env: development
+    tier: frontend
+    app: apache
+    release: stable
+spec:
+  containers:
+  - image: httpd
+    name: apache-container
+    ports:
+    - protocol: TCP
+      containerPort: 80

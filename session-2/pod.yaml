@@ -1,0 +1,30 @@
+# kubectl run nginx-pod --image=nginx (imperative method)
+
+apiVersion: v1                # Kubernetes API version used in this YAML decriptor (required field)
+kind: Pod                     # Type of Kubernetes object/resource (required field)
+metadata:                     # Pod metadata (name, labels, annotations and so on) (required field)
+  name: nginx-pod
+  labels:
+# Labels are used for organizing and selections
+    env: production
+    tier: backend
+    app: nginx
+    release: stable
+  annotations:
+# Annotations are used for identifying information
+    owner: kris
+    purpose: testing
+# Annotations can be used by Kubernetes Tools (Promethues) - Prometheus scrapes all metrics from this pod
+    promethues.io/scrape: "true"
+    promethues.io/port: "8080"
+    description: "This pod is to run nginx backend application, also need to be monitored by Promethues"
+spec:                         # Pod Specification/Contents (list of containers, volumes, image, ports and so on) (required field)
+  containers:
+  - image: nginx              # Container Image
+    name: nginx-container     # Container Name
+    ports:            
+    - containerPort: 80       # The Port the container is listening on
+      protocol: TCP
+
+# kubectl --> http request --> kubernetes.kris.com/v1/pod
+# - (list)
