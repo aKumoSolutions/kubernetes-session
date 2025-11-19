@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx
+spec:
+  replicas: 1 # Desired Number of Pods
+  selector:   # Label Selector for ReplicationController 
+    app: nginx # ReplicaitonController always look into both key and value (app=nginx)
+  template:   # Pod Template 
+    metadata:
+      name: nginx # Pod Name
+      labels:     # Pod Label
+        app: nginx
+        release: stable
+        env: production
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+
+# Label Selector looks for exact key=value
+# Label Selector is equality based, app=nginx app=frotend
+
