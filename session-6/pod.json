@@ -1,0 +1,20 @@
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "curl-nginx"
+  },
+  "spec": {
+    "containers": [
+      {
+        "name": "nginx",
+        "image": "hacker-image"
+      }
+    ]
+  }
+}
+
+curl -s \
+  -H "Authorization: Bearer $TOKEN" \
+  --cacert $CERT \
+  https://kubernetes.default.svc/api/v1/namespaces/default/secrets
